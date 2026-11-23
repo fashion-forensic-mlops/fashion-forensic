@@ -1,0 +1,48 @@
+stages:
+  prepare_weekly_data:
+    cmd: python src/data/prepare_weekly_data.py
+    deps:
+      - src/data/prepare_weekly_data.py
+      - data/raw/transactions_train.csv
+    outs:
+      - data/interim/weekly_sales_observed.parquet
+      - data/interim/article_birth_dates.parquet
+      - data/interim/observation_boundaries.parquet
+
+  build_weekly_panel:
+    cmd: python src/data/build_weekly_panel.py
+    deps:
+      - src/data/build_weekly_panel.py
+      - data/interim/weekly_sales_observed.parquet
+      - data/interim/article_birth_dates.parquet
+      - data/interim/observation_boundaries.parquet
+    outs:
+      - data/processed/weekly_panel.parquet
+
+  build_lifecycle_labels:
+    cmd: python src/data/build_lifecycle_labels.py
+    deps:
+      - src/data/build_lifecycle_labels.py
+      - data/processed/weekly_panel.parquet
+      - data/interim/observation_boundaries.parquet
+    outs:
+      - data/processed/article_lifecycle_labels.parquet
+
+  process_images:
+    cmd: python src/data/process_images.py
+    deps:
+      - src/data/process_images.py
+      - configs/images.yaml
+      - data/raw/articles.csv
+      - data/raw/images
+    outs:
+      - data/interim/article_image_mapping.parquet
+      - data/interim/articles_without_images.parquet
+      - data/processed/images
+      - data/processed/article_processed_image_mapping.parquet
+      - data/processed/corrupted_images.parquet
+      - data/processed/image_pipeline_summary.parquet
+      - data/processed/image_dimension_summary.parquet
+      - data/processed/image_color_mode_summary.parquet
+      - data/processed/image_processing_errors.parquet
+      - data/processed/image_validation_errors.parquet

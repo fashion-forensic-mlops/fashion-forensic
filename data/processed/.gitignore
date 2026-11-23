@@ -1,0 +1,10 @@
+/weekly_panel.parquet
+/article_lifecycle_labels.parquet
+/images
+/article_processed_image_mapping.parquet
+/corrupted_images.parquet
+/image_pipeline_summary.parquet
+/image_dimension_summary.parquet
+/image_color_mode_summary.parquet
+/image_processing_errors.parquet
+/image_validation_errors.parquet
