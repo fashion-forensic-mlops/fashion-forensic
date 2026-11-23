@@ -1,0 +1,16 @@
+images:
+  input_directory: data/raw/images
+  output_directory: data/processed/images
+
+  output_size:
+    width: 224
+    height: 224
+
+  format: JPEG
+  color_mode: RGB
+  resize_method: contain
+  padding: true
+  padding_color: [255, 255, 255]
+
+  preserve_aspect_ratio: true
+  filename_format: "{article_id}.jpg"
