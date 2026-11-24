@@ -41,13 +41,13 @@ stages:
       size: 3097582
     - path: src/data/build_weekly_panel.py
       hash: md5
-      md5: 1c82baffb5615358c8b99130c8819f7a
-      size: 4879
+      md5: 1771c3544620d5d1bb531d9b80e5e257
+      size: 5074
     outs:
     - path: data/processed/weekly_panel.parquet
       hash: md5
-      md5: 1e82e5f9cd598c41ea69f7f35221bf96
-      size: 40769239
+      md5: 50e840dc134eee15e59de9d644c22d89
+      size: 40572180
   build_lifecycle_labels:
     cmd: python src/data/build_lifecycle_labels.py
     deps:
@@ -57,12 +57,12 @@ stages:
       size: 2005
     - path: data/processed/weekly_panel.parquet
       hash: md5
-      md5: 1e82e5f9cd598c41ea69f7f35221bf96
-      size: 40769239
+      md5: 50e840dc134eee15e59de9d644c22d89
+      size: 40572180
     - path: src/data/build_lifecycle_labels.py
       hash: md5
-      md5: f48eab328212962fb236d109999bd4a6
-      size: 8842
+      md5: d2468cc6630d2dd2a114a0cf678abbb1
+      size: 9144
     outs:
     - path: data/processed/article_lifecycle_labels.parquet
       hash: md5
@@ -86,8 +86,8 @@ stages:
       nfiles: 105100
     - path: src/data/process_images.py
       hash: md5
-      md5: a60ba4136acdff60fbba214ddea597b0
-      size: 11882
+      md5: 383cd7b47f1a277c4e00b72e8ba120d4
+      size: 12047
     outs:
     - path: data/interim/article_image_mapping.parquet
       hash: md5
@@ -147,8 +147,8 @@ stages:
       size: 36127865
     - path: src/data/build_splits.py
       hash: md5
-      md5: 54d49a115061bb8bd7a2a73b7be6e14e
-      size: 11283
+      md5: a19ffec4bd54cf2e0a8ba16437f08aca
+      size: 11701
     outs:
     - path: data/processed/article_splits.parquet
       hash: md5
@@ -175,12 +175,12 @@ stages:
       size: 585609
     - path: data/processed/weekly_panel.parquet
       hash: md5
-      md5: 1e82e5f9cd598c41ea69f7f35221bf96
-      size: 40769239
+      md5: 50e840dc134eee15e59de9d644c22d89
+      size: 40572180
     - path: src/data/build_forecasting_dataset.py
       hash: md5
-      md5: 65acd5093a92a59070f126b9fbb8caee
-      size: 14182
+      md5: 005fee069d1d775b0ddf8b0faaba156b
+      size: 14181
     outs:
     - path: data/processed/forecasting_dataset.parquet
       hash: md5

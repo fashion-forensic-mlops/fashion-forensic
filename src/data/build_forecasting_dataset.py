@@ -4,7 +4,6 @@ from pathlib import Path
 import polars as pl
 import yaml
 
-
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 PANEL_PATH = PROJECT_ROOT / "data/processed/weekly_panel.parquet"
@@ -112,7 +111,7 @@ def main():
     validate_inputs()
 
     (
-        settings,
+        _settings,
         horizon,
         target_start,
         target_end,

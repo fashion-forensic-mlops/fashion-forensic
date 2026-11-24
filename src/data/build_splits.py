@@ -4,7 +4,6 @@ from pathlib import Path
 import polars as pl
 import yaml
 
-
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 ARTICLES_PATH = PROJECT_ROOT / "data/raw/articles.csv"

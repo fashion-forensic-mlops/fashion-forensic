@@ -134,7 +134,7 @@ for image_path in tqdm(image_files, desc="Auditing raw images"):
         with Image.open(image_path) as img:
             img.verify()
 
-    except Exception as error:
+    except (OSError, ValueError, SyntaxError, Image.DecompressionBombError) as error:
         raw_corrupted_images.append({
             "image_path": image_path.relative_to(PROJECT_ROOT).as_posix(),
             "error": str(error),
@@ -207,7 +207,7 @@ for image_path in tqdm(image_files, desc="Processing images"):
     try:
         preprocess_image(image_path, output_path)
 
-    except Exception as error:
+    except (OSError, ValueError, SyntaxError, Image.DecompressionBombError) as error:
         processing_errors.append({
             "article_id": article_id,
             "image_path": image_path.relative_to(
@@ -271,7 +271,7 @@ for path in tqdm(processed_files, desc="Validating images"):
 
             img.verify()
 
-    except Exception as error:
+    except (OSError, ValueError, SyntaxError, Image.DecompressionBombError) as error:
         validation_errors.append({
             "image": path.name,
             "error": str(error),
