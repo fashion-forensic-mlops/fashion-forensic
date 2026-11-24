@@ -8,3 +8,7 @@
 /image_color_mode_summary.parquet
 /image_processing_errors.parquet
 /image_validation_errors.parquet
+
+/article_splits.parquet
+/product_group_splits.parquet
+/split_summary.parquet

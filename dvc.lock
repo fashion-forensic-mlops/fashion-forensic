@@ -130,3 +130,35 @@ stages:
       md5: 5b99c0b2d44c0914e1118938c2250026.dir
       size: 476205677
       nfiles: 105100
+  build_splits:
+    cmd: python src/data/build_splits.py
+    deps:
+    - path: configs/splits.yaml
+      hash: md5
+      md5: 12dcb5640ab1e9bd7cf7e00108bf29a5
+      size: 482
+    - path: data/interim/article_birth_dates.parquet
+      hash: md5
+      md5: e868099d749ef22ae8d3748b16272d4b
+      size: 307658
+    - path: data/raw/articles.csv
+      hash: md5
+      md5: f193ef0f582e8476ebb613d143742d0f
+      size: 36127865
+    - path: src/data/build_splits.py
+      hash: md5
+      md5: 07528133390c130e15a5e84d73b4edac
+      size: 11311
+    outs:
+    - path: data/processed/article_splits.parquet
+      hash: md5
+      md5: 0727473bfa656f91464d4a901bb4fedc
+      size: 585609
+    - path: data/processed/product_group_splits.parquet
+      hash: md5
+      md5: 16f8b269bd70fc821e7e21c6053c271d
+      size: 150370
+    - path: data/processed/split_summary.parquet
+      hash: md5
+      md5: 38f724a645299bf418ccd88a3c5deb5d
+      size: 2137

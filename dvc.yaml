@@ -46,3 +46,15 @@ stages:
       - data/processed/image_color_mode_summary.parquet
       - data/processed/image_processing_errors.parquet
       - data/processed/image_validation_errors.parquet
+
+  build_splits:
+    cmd: python src/data/build_splits.py
+    deps:
+      - src/data/build_splits.py
+      - configs/splits.yaml
+      - data/raw/articles.csv
+      - data/interim/article_birth_dates.parquet
+    outs:
+      - data/processed/article_splits.parquet
+      - data/processed/product_group_splits.parquet
+      - data/processed/split_summary.parquet
