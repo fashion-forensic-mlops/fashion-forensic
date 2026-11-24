@@ -162,3 +162,31 @@ stages:
       hash: md5
       md5: 38f724a645299bf418ccd88a3c5deb5d
       size: 2137
+  build_forecasting_dataset:
+    cmd: python src/data/build_forecasting_dataset.py
+    deps:
+    - path: configs/forecasting.yaml
+      hash: md5
+      md5: 52d2cc6a3488b0dbf03663110b21b7f8
+      size: 887
+    - path: data/processed/article_splits.parquet
+      hash: md5
+      md5: 0727473bfa656f91464d4a901bb4fedc
+      size: 585609
+    - path: data/processed/weekly_panel.parquet
+      hash: md5
+      md5: 1e82e5f9cd598c41ea69f7f35221bf96
+      size: 40769239
+    - path: src/data/build_forecasting_dataset.py
+      hash: md5
+      md5: a2bbbd5f2bd71c11930e9672a73fdcf4
+      size: 13694
+    outs:
+    - path: data/processed/forecasting_dataset.parquet
+      hash: md5
+      md5: 1bc8fe0dcc1213228f4fbd14c13a56e3
+      size: 1459326
+    - path: data/processed/forecasting_eligibility_summary.parquet
+      hash: md5
+      md5: 7082ee9c6999da03bcc3d64509801f20
+      size: 2582

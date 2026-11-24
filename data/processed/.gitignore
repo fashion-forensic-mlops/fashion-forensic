@@ -12,3 +12,6 @@
 /article_splits.parquet
 /product_group_splits.parquet
 /split_summary.parquet
+
+/forecasting_dataset.parquet
+/forecasting_eligibility_summary.parquet

@@ -58,3 +58,14 @@ stages:
       - data/processed/article_splits.parquet
       - data/processed/product_group_splits.parquet
       - data/processed/split_summary.parquet
+
+  build_forecasting_dataset:
+    cmd: python src/data/build_forecasting_dataset.py
+    deps:
+      - src/data/build_forecasting_dataset.py
+      - configs/forecasting.yaml
+      - data/processed/weekly_panel.parquet
+      - data/processed/article_splits.parquet
+    outs:
+      - data/processed/forecasting_dataset.parquet
+      - data/processed/forecasting_eligibility_summary.parquet
