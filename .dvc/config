@@ -1,0 +1,6 @@
+[core]
+    remote = r2
+['remote "r2"']
+    url = s3://fashion-forensic-mlops/dvcstore
+    endpointurl = https://90a7c760dac4c31fa84f012dfdf5911f.r2.cloudflarestorage.com
+    region = auto
