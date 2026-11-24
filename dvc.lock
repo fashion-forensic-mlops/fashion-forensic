@@ -1,0 +1,192 @@
+schema: '2.0'
+stages:
+  prepare_weekly_data:
+    cmd: python src/data/prepare_weekly_data.py
+    deps:
+    - path: data/raw/transactions_train.csv
+      hash: md5
+      md5: 1c2324373fd36542f4e6a99eedd1a240
+      size: 3488002253
+    - path: src/data/prepare_weekly_data.py
+      hash: md5
+      md5: 6cca56c78621acdd84e3d5e260355e29
+      size: 4366
+    outs:
+    - path: data/interim/article_birth_dates.parquet
+      hash: md5
+      md5: e868099d749ef22ae8d3748b16272d4b
+      size: 307658
+    - path: data/interim/observation_boundaries.parquet
+      hash: md5
+      md5: 74a460db25331ec5e6c9639b1707561b
+      size: 2005
+    - path: data/interim/weekly_sales_observed.parquet
+      hash: md5
+      md5: 22eb92d1f8974951ffc034831054e167
+      size: 3097582
+  build_weekly_panel:
+    cmd: python src/data/build_weekly_panel.py
+    deps:
+    - path: data/interim/article_birth_dates.parquet
+      hash: md5
+      md5: e868099d749ef22ae8d3748b16272d4b
+      size: 307658
+    - path: data/interim/observation_boundaries.parquet
+      hash: md5
+      md5: 74a460db25331ec5e6c9639b1707561b
+      size: 2005
+    - path: data/interim/weekly_sales_observed.parquet
+      hash: md5
+      md5: 22eb92d1f8974951ffc034831054e167
+      size: 3097582
+    - path: src/data/build_weekly_panel.py
+      hash: md5
+      md5: 1771c3544620d5d1bb531d9b80e5e257
+      size: 5074
+    outs:
+    - path: data/processed/weekly_panel.parquet
+      hash: md5
+      md5: 50e840dc134eee15e59de9d644c22d89
+      size: 40572180
+  build_lifecycle_labels:
+    cmd: python src/data/build_lifecycle_labels.py
+    deps:
+    - path: data/interim/observation_boundaries.parquet
+      hash: md5
+      md5: 74a460db25331ec5e6c9639b1707561b
+      size: 2005
+    - path: data/processed/weekly_panel.parquet
+      hash: md5
+      md5: 50e840dc134eee15e59de9d644c22d89
+      size: 40572180
+    - path: src/data/build_lifecycle_labels.py
+      hash: md5
+      md5: d2468cc6630d2dd2a114a0cf678abbb1
+      size: 9144
+    outs:
+    - path: data/processed/article_lifecycle_labels.parquet
+      hash: md5
+      md5: c49c2858bc582f0f9d6fdb8d0d75bd2e
+      size: 1057620
+  process_images:
+    cmd: python src/data/process_images.py
+    deps:
+    - path: configs/images.yaml
+      hash: md5
+      md5: 83c7f23731d98096e6c008c878c1264e
+      size: 323
+    - path: data/raw/articles.csv
+      hash: md5
+      md5: f193ef0f582e8476ebb613d143742d0f
+      size: 36127865
+    - path: data/raw/images
+      hash: md5
+      md5: 0832f309e9a6d97b4ee06a1fcb4a79b9.dir
+      size: 30557038537
+      nfiles: 105100
+    - path: src/data/process_images.py
+      hash: md5
+      md5: 383cd7b47f1a277c4e00b72e8ba120d4
+      size: 12047
+    outs:
+    - path: data/interim/article_image_mapping.parquet
+      hash: md5
+      md5: 04ab44dee067e34440de8c4e6f28f8c6
+      size: 485451
+    - path: data/interim/articles_without_images.parquet
+      hash: md5
+      md5: 4056063f23eefea10f8e35c2044764d6
+      size: 2249
+    - path: data/processed/article_processed_image_mapping.parquet
+      hash: md5
+      md5: cea2c3aa1b3c0bce81bcbc9b81878f44
+      size: 759202
+    - path: data/processed/corrupted_images.parquet
+      hash: md5
+      md5: 09d476295b2d1228667b5d40b4ce0e2f
+      size: 403
+    - path: data/processed/image_color_mode_summary.parquet
+      hash: md5
+      md5: a380446b180075a260b7831e2b6acbab
+      size: 908
+    - path: data/processed/image_dimension_summary.parquet
+      hash: md5
+      md5: 2e1fb28d5222ba0a3411cdc192b3a8a9
+      size: 1273
+    - path: data/processed/image_pipeline_summary.parquet
+      hash: md5
+      md5: 801020f76712811263bd96d1208b60e8
+      size: 1166
+    - path: data/processed/image_processing_errors.parquet
+      hash: md5
+      md5: 890733763a99614c366b95c1470fb3e9
+      size: 493
+    - path: data/processed/image_validation_errors.parquet
+      hash: md5
+      md5: 80438b0a5781a0418ac4d0d239a09df7
+      size: 390
+    - path: data/processed/images
+      hash: md5
+      md5: 5b99c0b2d44c0914e1118938c2250026.dir
+      size: 476205677
+      nfiles: 105100
+  build_splits:
+    cmd: python src/data/build_splits.py
+    deps:
+    - path: configs/splits.yaml
+      hash: md5
+      md5: c0cccc33490fd0b9f85bde9e6cf45318
+      size: 498
+    - path: data/interim/article_birth_dates.parquet
+      hash: md5
+      md5: e868099d749ef22ae8d3748b16272d4b
+      size: 307658
+    - path: data/raw/articles.csv
+      hash: md5
+      md5: f193ef0f582e8476ebb613d143742d0f
+      size: 36127865
+    - path: src/data/build_splits.py
+      hash: md5
+      md5: a19ffec4bd54cf2e0a8ba16437f08aca
+      size: 11701
+    outs:
+    - path: data/processed/article_splits.parquet
+      hash: md5
+      md5: 0727473bfa656f91464d4a901bb4fedc
+      size: 585609
+    - path: data/processed/product_group_splits.parquet
+      hash: md5
+      md5: 16f8b269bd70fc821e7e21c6053c271d
+      size: 150370
+    - path: data/processed/split_summary.parquet
+      hash: md5
+      md5: 38f724a645299bf418ccd88a3c5deb5d
+      size: 2137
+  build_forecasting_dataset:
+    cmd: python src/data/build_forecasting_dataset.py
+    deps:
+    - path: configs/forecasting.yaml
+      hash: md5
+      md5: c5d4256a3dff1558e7dc0df19dacb62f
+      size: 921
+    - path: data/processed/article_splits.parquet
+      hash: md5
+      md5: 0727473bfa656f91464d4a901bb4fedc
+      size: 585609
+    - path: data/processed/weekly_panel.parquet
+      hash: md5
+      md5: 50e840dc134eee15e59de9d644c22d89
+      size: 40572180
+    - path: src/data/build_forecasting_dataset.py
+      hash: md5
+      md5: 005fee069d1d775b0ddf8b0faaba156b
+      size: 14181
+    outs:
+    - path: data/processed/forecasting_dataset.parquet
+      hash: md5
+      md5: 1bc8fe0dcc1213228f4fbd14c13a56e3
+      size: 1459326
+    - path: data/processed/forecasting_eligibility_summary.parquet
+      hash: md5
+      md5: 7082ee9c6999da03bcc3d64509801f20
+      size: 2582

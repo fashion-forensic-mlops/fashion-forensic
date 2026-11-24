@@ -221,3 +221,19 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# M2 project exclusions
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# DVC local credentials
+.dvc/config.local
+
+# Raw H&M dataset
+data/raw/
+
+# Temporary files
+tempCodeRunnerFile.py

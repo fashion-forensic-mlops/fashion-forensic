@@ -1,0 +1,35 @@
+﻿forecasting:
+  horizon: 6
+
+  target:
+    start_age_week: 4
+    end_age_week: 9
+
+  input:
+    mode_b_history_weeks: 4
+
+  modes:
+    mode_a:
+      name: image_and_launch_date
+      uses_sales_history: false
+
+    mode_b:
+      name: image_launch_date_and_sales_history
+      uses_sales_history: true
+      history_start_age_week: 0
+      history_end_age_week: 3
+
+  observation:
+    last_complete_week: "2020-09-14"
+    partial_final_week: "2020-09-21"
+
+  eligibility:
+    require_complete_target_window: true
+    retain_ineligible_articles: true
+
+  description: >
+    Both forecasting modes predict the same six weekly sales values
+    at product ages 4 through 9. Mode A uses image and launch-date
+    information. Mode B additionally uses sales from product ages
+    0 through 3. Articles without a complete six-week target window
+    remain in the dataset but are marked ineligible.

@@ -1,0 +1,17 @@
+﻿splits:
+  method: chronological_product_group
+
+  group_column: product_code
+  article_column: article_id
+  birth_date_column: birth_date
+
+  train_end: "2019-09-08"
+  validation_end: "2020-03-14"
+
+  unassigned_label: "unassigned"
+
+  description: >
+    Product groups are assigned chronologically using their earliest
+    observed article birth date. All articles sharing a product_code
+    inherit the same split. Articles in groups without observed sales
+    remain unassigned.

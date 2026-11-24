@@ -1,0 +1,5 @@
+/weekly_sales_observed.parquet
+/article_birth_dates.parquet
+/observation_boundaries.parquet
+/article_image_mapping.parquet
+/articles_without_images.parquet
